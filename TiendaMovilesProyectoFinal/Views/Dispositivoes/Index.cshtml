@@ -1,0 +1,171 @@
+﻿@model IEnumerable<TiendaMovilesProyectoFinal.Models.Dispositivo>
+
+@{
+    ViewBag.Title = "Dispositivos";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p a {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #28a745;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+            p a:hover {
+                background-color: #218838;
+            }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+            .table th, .table td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+                text-align: left;
+            }
+
+            .table th {
+                background-color: #007bff;
+                color: #fff;
+            }
+
+            .table tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .table tr:hover {
+                background-color: #e9e9e9;
+            }
+
+        .action-buttons a {
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+
+            .action-buttons a.edit {
+                background-color: #ffc107;
+            }
+
+            .action-buttons a.details {
+                background-color: #17a2b8;
+            }
+
+            .action-buttons a.delete {
+                background-color: #dc3545;
+            }
+
+            .action-buttons a:hover {
+                opacity: 0.8;
+            }
+
+        .device-image img {
+            width: 100px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stock {
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Dispositivos</h2>
+
+    <p>
+        @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-success" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Marca.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Modelo.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().SistemaOperativo.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Stock)
+            </th>
+            <th>
+                Imagen
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SistemaOperativo.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td class="stock">
+                    @Html.DisplayFor(modelItem => item.Stock)
+                </td>
+                <td class="device-image">
+                    <img src="@item.ImagenUrl" alt="Imagen del dispositivo">
+                </td>
+                <td class="action-buttons">
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "edit" }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "details" }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "delete" })
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

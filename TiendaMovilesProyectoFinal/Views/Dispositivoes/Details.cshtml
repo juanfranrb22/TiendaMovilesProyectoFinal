@@ -1,0 +1,93 @@
+﻿@model TiendaMovilesProyectoFinal.Models.Dispositivo
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Dispositivo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SistemaOperativo.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SistemaOperativo.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagenUrl)
+        </dt>
+
+        <dd>
+            @if (!string.IsNullOrEmpty(Model.ImagenUrl))
+            {
+                <img src="@Url.Content(Model.ImagenUrl)" alt="Imagen del dispositivo" style="max-width: 200px; max-height: 200px;" />
+            }
+            else
+            {
+                <p>No hay imagen disponible</p>
+            }
+        </dd>
+    </dl>
+</div>
+
+<p>
+    @if (HttpContext.Current.User.IsInRole("Administrador"))
+    {
+        @Html.ActionLink("Editar", "Edit", new { id = Model.Id })
+    }
+    @Html.ActionLink("Volver a la lista", "Index")
+</p>
